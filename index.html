@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>todo app</title>
+    <script src="public/js/lib/vue.js"></script>
+</head>
+<body>
+<div id="content">
+    <h1>TODO TASK</h1>
+    <input type="text" value="" v-model="newTask"/>
+    <input type="button" value="add task" @click.prevent="addTask(newTask)">
+    <ul>
+        <li v-for="task in tasks">
+            {{ task }}
+        </li>
+    </ul>
+</div>
+<script src="public/js/src/todo.js"></script>
+</body>
+</html>
