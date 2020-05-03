@@ -1,29 +1,44 @@
 import t from './templates/todo.js';
 // import Vue from '../lib/vue';
-let me;
-export default {
-    name: 'Todo',
-    data()
-    {
-        return {
-            newTask: '',
-            tasks: []
-        }
-    },
-    beforeCreate()
-    {
-        me = this;
-    },
-    methods: {
-        addTask: function (text) {
-            if ('' === text) {
-                return;
+
+export default function() {
+    let me;
+    let Todo = {
+        name: 'Todo',
+        data()
+        {
+            return {
+                see: false,
+                newTask: '',
+                tasks: []
             }
-            me.tasks.push(text);
-        }
-    },
-    template: `
-        <div id="content">
+        },
+        beforeCreate()
+        {
+            me = this;
+        },
+        show: function() {
+            me.see = true;
+        },
+        hide: function() {
+            me.see = false;
+        },
+        methods: {
+            shouldShow: function() {
+                return true === me.see;
+            },
+            // show: function() {
+            //     me.see = true;
+            // },
+            addTask: function (text) {
+                if ('' === text) {
+                    return;
+                }
+                me.tasks.push(text);
+            }
+        },
+        template: `
+        <div class="todo" v-show="shouldShow()">
             <h1>TODO TASK</h1>
             <input type="text" value="" v-model="newTask"/>
             <input type="button" id="add" value="add task" @click.prevent="addTask(newTask)">
@@ -34,4 +49,12 @@ export default {
             </ul>
         </div>
     `
-};
+    };
+
+    let obj = Object.create(Todo);
+    obj.name = obj['name'];
+
+    return obj;
+}
+// let Todo = Todo();
+// export Todo();

@@ -6,7 +6,7 @@ import VueRoot from '/public/js/src/app.js';
 //         VueRoot
 //     }
 // });
-
+let vueRoot = VueRoot();
 new Vue({
-    render: h => h(VueRoot),
+    render: h => h(vueRoot),
 }).$mount(`#app`);
